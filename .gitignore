@@ -1,0 +1,5 @@
+logs
+profiles.yml
+.venv
+.vscode
+target

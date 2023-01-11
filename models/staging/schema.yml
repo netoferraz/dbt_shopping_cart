@@ -1,0 +1,145 @@
+version: 2
+
+seeds:
+  - name: customers
+    description: "Base de clientes"
+    columns:
+      - name: customer_id
+        description: "Identificador único do cliente"
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: "Nome"
+        tests:
+          - not_null
+      - name: gender
+        description: "Gênero"
+        tests:
+          - not_null
+      - name: age
+        description: "Idade"
+        tests:
+          - not_null
+      - name: home_address
+        description: "Endereço"
+        tests:
+          - not_null
+      - name: zip_code
+        description: "CEP"
+        tests:
+          - not_null
+      - name: city
+        description: "Cidade"
+        tests:
+          - not_null
+      - name: state
+        description: "Estado"
+        tests:
+          - not_null
+      - name: country
+        description: "País"
+        tests:
+          - accepted_values:
+              values: ["Australia"]
+          - not_null
+
+  - name: products
+    description: "Base de produtos"
+    columns:
+      - name: product_id
+        description: "ID do produto"
+        tests:
+          - unique
+          - not_null
+      - name: product_type
+        description: "tipo de produto"
+        tests:
+          - not_null
+      - name: product_name
+        description: "nome"
+        tests:
+          - not_null
+      - name: size
+        description: "tamanho"
+        tests:
+          - not_null
+      - name: colour
+        description: "cor"
+        tests:
+          - not_null
+      - name: price
+        description: "preço"
+        tests:
+          - not_null
+      - name: quantity
+        description: "quantidade"
+        tests:
+          - not_null
+      - name: description
+        description: "descrição"
+        tests:
+          - not_null
+
+  - name: orders
+    description: "Base de pedidos"
+    columns:
+      - name: order_id
+        description: "ID do pedido"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "id do cliente"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('customers')
+              field: customer_id
+      - name: payment
+        description: "valor do pagamento"
+        tests:
+          - not_null
+      - name: order_date
+        description: "data do pedido"
+        tests:
+          - not_null
+      - name: delivery_date
+        description: "data da entrega"
+        tests:
+          - not_null
+
+  - name: sales
+    description: "Base de vendas"
+    columns:
+      - name: sales_id
+        description: "ID da venda"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "id do pedido"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('orders')
+              field: order_id
+      - name: product_id
+        description: "id do produto"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('products')
+              field: product_id
+      - name: price_per_unit
+        description: "preço por unidade"
+        tests:
+          - not_null
+      - name: quantity
+        description: "quantidade"
+        tests:
+          - not_null
+      - name: total_price
+        description: "preço total"
+        tests:
+          - not_null

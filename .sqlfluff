@@ -1,0 +1,60 @@
+[sqlfluff]
+dialect = snowflake
+templater = dbt
+
+[sqlfluff:indentation]
+# See https://docs.sqlfluff.com/en/stable/indentation.html
+indented_joins = False
+indented_ctes = False
+indented_using_on = True
+template_blocks_indent = True
+
+[sqlfluff:templater]
+unwrap_wrapped_queries = True
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = True
+
+# Some rules can be configured directly from the config common to other rules
+[sqlfluff:rules]
+tab_space_size = 4
+max_line_length = 120
+indent_unit = space
+comma_style = trailing
+allow_scalar = True
+single_table_references = consistent
+unquoted_identifiers_policy = all
+
+[sqlfluff:rules:L010]
+# Keywords
+capitalisation_policy = lower
+# Comma separated list of words to ignore for this rule
+ignore_words = None
+
+[sqlfluff:rules:L014]
+# Unquoted identifiers
+extended_capitalisation_policy = lower
+# Comma separated list of words to ignore for this rule
+ignore_words = None
+
+[sqlfluff:rules:L029]
+# Function names
+ignore_words = date
+
+[sqlfluff:rules:L030]
+# Function names
+extended_capitalisation_policy = lower
+# Comma separated list of words to ignore for this rule
+ignore_words = None
+
+[sqlfluff:rules:L040]
+# Null & Boolean Literals
+capitalisation_policy = lower
+# Comma separated list of words to ignore for this rule
+ignore_words = None
+
+[sqlfluff:rules:L063]
+# Data Types
+extended_capitalisation_policy = lower
+# Comma separated list of words to ignore for this rule
+ignore_words = None
