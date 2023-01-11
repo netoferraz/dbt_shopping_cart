@@ -7,8 +7,8 @@ with source as (
 sales as (
 
     select
-        sales_id
-        as order_id,
+        sales_id,
+        order_id,
         product_id,
         price_per_unit,
         quantity,
