@@ -1,15 +1,44 @@
-Welcome to your new dbt project!
+# Apresentação dbt
 
-### Using the starter project
-
-Try running the following commands:
-- dbt run
-- dbt test
+Fonte dados: [Shopping Cart Database](https://www.kaggle.com/datasets/ruchi798/shopping-cart-database)
 
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+## 1. Criar & ativar ambiente virtual
+
+- `python3 -m venv .venv`
+
+- `source .venv/bin/activate`
+
+## 2. Instalar dbt e dependências
+
+`pip install -r requirements`
+
+
+## 4. Criar o arquivo de profiles
+`touch profiles.yml`
+
+```
+techstore:
+  outputs:
+    dev:
+      type: postgres
+      threads: 4
+      host: localhost
+      port: 5432
+      user: postgres
+      pass: postgres
+      dbname: postgres
+      schema: raw
+
+  target: dev
+```
+
+## 5. Verificar se o dbt consegue se conectar com o banco de dados
+`dbt debug`
+
+## 6. Carregar seeds
+`dbt seed`
+
+## 7. Build
+
+`dbt build`
